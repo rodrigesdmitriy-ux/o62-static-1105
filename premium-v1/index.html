@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Объект 6/2 · закрытый lounge на Рогожском валу</title>
+  <meta name="description" content="Тихий закрытый lounge у Римской и Площади Ильича. Свой стол бронируешь онлайн с депозитом: подтверждаем сразу, без звонков.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- AGE GATE 18+ · ритуал «постучите» -->
+  <div class="agegate" id="agegate">
+    <div class="agecard">
+      <div class="logo">Объект <b>6/2</b></div>
+      <h2 class="age-knock">Постучите.</h2>
+      <p class="age-lead">6/2: адрес и шифр. За дверью наливают и крутят кальян тем, кому уже есть 18. Скажи, что ты свой, и откроем.</p>
+      <form class="age-form" id="ageForm">
+        <button class="btn" id="ageYes" type="submit">Мне есть 18, открой</button>
+        <button class="btn btn-ghost" id="ageNo" type="button">Ещё рано</button>
+      </form>
+      <p class="age-fine">Внутри тихо. Громкими барами тут не пахнет.</p>
+    </div>
+  </div>
+
+  <!-- NAVIGATION -->
+  <nav class="nav" id="nav">
+    <div class="logo">Объект <b>6/2</b></div>
+    <div class="links">
+      <a href="#atmosphere">Атмосфера</a>
+      <a href="#menu">Меню</a>
+      <a href="#booking">Бронь стола</a>
+      <a href="#vip">VIP</a>
+      <a href="#contacts">Контакты</a>
+    </div>
+    <a href="#booking" class="btn btn-ghost cta">Выбрать свой стол</a>
+  </nav>
+
+  <!-- 1. HERO -->
+  <section class="hero">
+    <div class="hero-bg">
+      <img src="assets/hero.png" alt="Тёмный зал Объекта 6/2 в медном свете">
+    </div>
+    <div class="hero-glow" aria-hidden="true"></div>
+    <div class="hero-content reveal">
+      <span class="eyebrow">Закрытый lounge · Москва · Рогожский вал</span>
+      <h1>Сюда приходят <span class="c">свои</span></h1>
+      <p class="sub">Глушим свет, миксуем авторский бар, томим дымный кальян. Стол держим за тобой: бронь со своим местом и депозитом подтверждаем сразу. Звонить никуда не надо.</p>
+      <div class="row">
+        <a href="#booking" class="btn">Выбрать свой стол</a>
+        <a href="#menu" class="btn btn-ghost">Открыть меню</a>
+      </div>
+      <p class="hero-offer">Первый вечер: авторский коктейль за бронь на сайте.</p>
+      <div class="hero-stats">
+        <div class="stat-item">
+          <b>4.9 / 5</b>
+          <span>Яндекс Карты</span>
+        </div>
+        <div class="stat-item">
+          <b>5 минут пешком</b>
+          <span>От Римской и Площади Ильича</span>
+        </div>
+        <div class="stat-item">
+          <b>3 VIP-комнаты</b>
+          <span>Cabinet · Copper · Luna</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. LEGEND -->
+  <section class="section legend reveal">
+    <p class="quote">«6/2»: адрес и шифр. Сюда приходят свои. Темнеет дерево, блестит медь, гаснет лишний свет, и время замедляется.</p>
+    <p class="legend-body">
+      Сюда идут те, кто устал от громких баров. Ставим негромкую музыку, наливаем авторский бар, крутим кальян у мастеров. Берите компанию и занимайте свой стол.
+    </p>
+  </section>
+
+  <!-- 3. ATMOSPHERE -->
+  <section class="section atmosphere" id="atmosphere">
+    <h2>Тёмная камерная <span class="accent">эстетика</span></h2>
+
+    <div class="gallery-grid reveal">
+      <div class="gallery-item g-1">
+        <img src="assets/hero.png" alt="Зал в медном свете">
+        <div class="cap">Медный свет и фактура дерева</div>
+      </div>
+      <div class="gallery-item g-2">
+        <img src="assets/cocktail.png" alt="Авторский коктейль">
+        <div class="cap">Авторский бар</div>
+      </div>
+      <div class="gallery-item g-3">
+        <img src="assets/vip.png" alt="Закрытая VIP-комната">
+        <div class="cap">Закрытые зоны</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. MENU -->
+  <section class="section menu" id="menu">
+    <h2>Бар, кальян, <span class="accent">кухня</span></h2>
+
+    <div class="menu-tabs reveal">
+      <div class="menu-tab active">Коктейли</div>
+      <div class="menu-tab">Крепкий бар</div>
+      <div class="menu-tab">Кальяны</div>
+      <div class="menu-tab">Кухня</div>
+    </div>
+
+    <div class="menu-grid reveal">
+      <div class="menu-item">
+        <img src="assets/cocktail.png" alt="Signature 6/2">
+        <div class="info">
+          <div class="header">
+            <span class="name">Signature 6/2</span>
+            <span class="price">690 ₽</span>
+          </div>
+          <div class="desc">мескаль, дым, грейпфрут</div>
+          <span class="badge">Рекомендуем</span>
+        </div>
+      </div>
+      <div class="menu-item">
+        <img src="assets/cocktail.png" alt="Старый объект" style="filter: hue-rotate(45deg);">
+        <div class="info">
+          <div class="header">
+            <span class="name">Старый объект</span>
+            <span class="price">650 ₽</span>
+          </div>
+          <div class="desc">бурбон, биттер, апельсин</div>
+        </div>
+      </div>
+      <div class="menu-item">
+        <img src="assets/hero.png" alt="Авторский кальян">
+        <div class="info">
+          <div class="header">
+            <span class="name">Авторский кальян</span>
+            <span class="price">1 800 ₽</span>
+          </div>
+          <div class="desc">на фруктовой чаше, любой вкус</div>
+          <span class="badge">Signature</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. BOOKING · герой страницы -->
+  <section class="section booking" id="booking">
+    <div class="booking-head">
+      <h2>Выбери <span class="accent">свой стол</span></h2>
+      <p class="booking-lead">
+        Жми на свободное место: депозит вносишь онлайн, картой или через СБП. Бронь подтверждаем сразу. Ни звонков, ни пустых столов.
+      </p>
+      <p class="booking-status"><span class="pulse" aria-hidden="true"></span>Сегодня свободно 6 столов из 8 · VIP: 2 из 3</p>
+    </div>
+
+    <div class="scheme-container reveal">
+      <div class="scheme-grid">
+        <div class="vip-row">
+          <div class="table-vip" data-name="VIP Cabinet" data-dep="депозит от 15 000 ₽">
+            <div class="n">VIP Cabinet</div>
+            <div class="d">депозит от 15 000 ₽</div>
+          </div>
+          <div class="table-vip" data-name="VIP Copper" data-dep="депозит от 12 000 ₽">
+            <div class="n">VIP Copper</div>
+            <div class="d">депозит от 12 000 ₽</div>
+          </div>
+          <div class="table-vip busy" data-name="VIP Luna" data-dep="депозит от 10 000 ₽">
+            <div class="n">VIP Luna</div>
+            <div class="d">занято на сегодня</div>
+          </div>
+        </div>
+
+        <div class="hall-row">
+          <div class="table-norm free" data-name="Стол 1">1</div>
+          <div class="table-norm free" data-name="Стол 2">2</div>
+          <div class="table-norm busy" data-name="Стол 3">3</div>
+          <div class="table-norm free" data-name="Стол 4">4</div>
+          <div class="table-norm free" data-name="Стол 5">5</div>
+          <div class="table-norm busy" data-name="Стол 6">6</div>
+          <div class="table-norm free" data-name="Стол 7">7</div>
+          <div class="table-norm free" data-name="Стол 8">8</div>
+        </div>
+
+        <div class="bar-zone">Барная стойка</div>
+
+        <div class="legend-line">
+          <span><i class="dot free"></i>Свободно</span>
+          <span><i class="dot busy"></i>Занято</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="booking-cta reveal">
+      <div class="booking-summary" id="bookingSummary" aria-live="polite">
+        <span class="sum-empty" id="sumEmpty">Пока ничего не выбрано. Тапни стол на схеме.</span>
+        <span class="sum-picked" id="sumPicked" hidden>Выбран <b id="sumName"></b><em id="sumDep"></em></span>
+      </div>
+      <button class="btn btn-book" id="bookBtn" disabled>Выбери стол на схеме</button>
+    </div>
+  </section>
+
+  <!-- 6. VIP & EVENTS -->
+  <section class="section" id="vip">
+    <h2>Дни рождения, <span class="accent">закрытые вечера</span></h2>
+
+    <div class="vip-features reveal">
+      <div class="vip-card">
+        <div class="icon">Комната</div>
+        <h3>Закрытая комната</h3>
+        <p>До 12 гостей, своя приставка, отдельный вход и обслуживание. Никто не помешает.</p>
+      </div>
+      <div class="vip-card">
+        <div class="icon">День рождения</div>
+        <h3>Под ключ</h3>
+        <p>Авторский торт, оформление зала и ведущий по запросу. Приходишь, а всё уже готово.</p>
+      </div>
+      <div class="vip-card">
+        <div class="icon">Банкет</div>
+        <h3>Компанией</h3>
+        <p>Корпоративы и вечеринки с меню под событие и депозитом-гарантией.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. REVIEWS -->
+  <section class="section reviews">
+    <h2>Что говорят <span class="accent">свои</span></h2>
+
+    <div class="review-grid reveal">
+      <div class="review-card">
+        <div class="stars" aria-label="5 из 5">★★★★★</div>
+        <p>«Нашли своё место в районе. Тихо, красиво, кальян отличный. Вернёмся.»</p>
+        <div class="who">Яндекс Карты · 5.0</div>
+      </div>
+      <div class="review-card">
+        <div class="stars" aria-label="5 из 5">★★★★★</div>
+        <p>«Бронировали VIP онлайн, пришли, и всё готово. Без лишних звонков.»</p>
+        <div class="who">Google Maps · 5.0</div>
+      </div>
+      <div class="review-card">
+        <div class="stars" aria-label="5 из 5">★★★★★</div>
+        <p>«Коктейли и кухня на уровне. Атмосфера держит до закрытия.»</p>
+        <div class="who">2ГИС · 5.0</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. CONTACTS -->
+  <section class="section" id="contacts">
+    <h2>Рогожский вал 6к2, <span class="accent">5 минут от метро</span></h2>
+
+    <div class="contacts-grid reveal">
+      <div class="map-container"></div>
+      <div class="contact-info">
+        <div class="contact-item">
+          <div class="k">Адрес</div>
+          <div class="v">Москва, Рогожский вал, 6к2</div>
+        </div>
+        <div class="contact-item">
+          <div class="k">Метро</div>
+          <div class="v">Римская · Площадь Ильича</div>
+        </div>
+        <div class="contact-item">
+          <div class="k">Режим работы</div>
+          <div class="v">Пн-Чт 16:00 – 02:00<br>Пт-Вс 16:00 – 04:00</div>
+        </div>
+        <div class="contact-item">
+          <div class="k">Телефон</div>
+          <div class="v">+7 (999) 000-00-00</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. FOOTER -->
+  <footer>
+    <div class="footer-grid reveal">
+      <div>
+        <div class="footer-logo">Объект <b>6/2</b></div>
+        <p class="footer-about">
+          Тихий lounge на Рогожском валу. Свой стол, своё меню, свои вечера для тех, кто устал от громких баров.
+        </p>
+      </div>
+      <div>
+        <h4>Разделы</h4>
+        <ul class="footer-links">
+          <li><a href="#atmosphere">Атмосфера</a></li>
+          <li><a href="#menu">Бар и кухня</a></li>
+          <li><a href="#booking">Бронь стола</a></li>
+          <li><a href="#vip">События</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Связь</h4>
+        <ul class="footer-links">
+          <li><a href="#">Telegram</a></li>
+          <li><a href="#">VK</a></li>
+          <li>+7 (999) 000-00-00</li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
