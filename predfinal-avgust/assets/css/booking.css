@@ -1,0 +1,239 @@
+/* PR2 · slot-first (ТЗ §3, §8): слот-бар над схемой, тултип занятого стола,
+   статус dimmed, плашка «У вас есть заявка». Визуальный язык блока брони:
+   те же чипы .bk-chip, медь/пергамент, моношрифт. */
+
+/* ---------- B · «Пульт»: слот в одну строку ---------- */
+.console{border:1px solid rgba(205,191,164,.18);border-radius:3px;
+  background:rgba(233,220,195,.035);padding:9px 16px;margin:0 0 20px}
+.cs-row{display:flex;align-items:center;gap:16px;min-width:0}
+.cs-guests{display:flex;align-items:center;gap:10px;flex:none}
+.cs-guests .bk-lbl{margin:0}
+.cs-sep{width:1px;align-self:stretch;background:rgba(205,191,164,.14);flex:none}
+.cs-tape{flex:1 1 300px;min-width:0;display:flex;flex-direction:column;gap:5px}
+.cs-lbl{font-family:var(--mono);font-size:9px;letter-spacing:.2em;
+  text-transform:uppercase;color:rgba(205,191,164,.65)}
+
+/* степпер гостей: база перенесена из старого слот-бара без изменений */
+.slotbar-step{display:flex;align-items:center;gap:6px}
+.slotbar-step button{
+  width:34px;height:34px;flex:none;display:grid;place-items:center;
+  background:none;border:1px solid rgba(205,191,164,.3);border-radius:2px;
+  color:var(--paper);font-size:16px;line-height:1;cursor:pointer;
+  transition:border-color .2s;padding:0;font-family:var(--mono);
+}
+.slotbar-step button:hover{border-color:var(--copper);color:var(--copper-hot)}
+.slotbar-step button:disabled{opacity:.3;cursor:not-allowed}
+.slotbar-step button:focus-visible{outline:2px solid var(--copper-hot);outline-offset:1px}
+.slotbar-step b{
+  min-width:26px;text-align:center;font-family:var(--serif);
+  font-weight:400;font-size:17px;color:var(--bone);
+}
+/* степпер пульта: плотнее старого */
+.console .slotbar-step button{width:38px;height:38px}
+.console .slotbar-step b{min-width:30px;font-size:18px}
+
+/* дисплей: сколько мест свободно под текущую компанию */
+.cs-status{flex:none;display:flex;align-items:center;gap:13px;padding-left:18px;
+  border-left:1px solid rgba(205,191,164,.14)}
+.cs-status>b{font-family:'District',var(--serif);font-weight:400;font-size:36px;
+  line-height:.9;color:var(--copper-hot)}
+.cs-status .cs-st-txt{display:flex;flex-direction:column;gap:4px}
+.cs-status .l1{font-family:var(--mono);font-size:10px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--bone)}
+.cs-status .l2{font-family:var(--mono);font-size:9.5px;letter-spacing:.08em;
+  color:rgba(205,191,164,.65)}
+.cs-status .l2 b{font-family:var(--mono);font-size:9.5px;color:var(--copper-hot);font-weight:400}
+
+/* свёрнутая строка пульта (только мобайл) */
+.cs-toggle{display:none;width:100%;background:none;border:none;cursor:pointer;
+  align-items:center;justify-content:space-between;gap:12px;padding:2px 0;
+  font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;color:var(--bone)}
+.cs-toggle i{font-style:normal;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;
+  color:rgba(205,191,164,.65);border-bottom:1px solid rgba(205,191,164,.3);padding-bottom:2px;
+  flex:none}
+.cs-toggle:hover i{color:var(--copper-hot);border-color:var(--copper)}
+.cs-collapse{width:100%}
+/* саммери в свёрнутой строке не переносится: на узких экранах уходит в троеточие */
+.cs-toggle [data-sum]{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+@media (max-width:360px){
+  .cs-toggle{font-size:10.5px;letter-spacing:.04em}
+}
+
+/* время: разделитель вечера и ночи, метка ближайшего доступного */
+.console .bk-chip.night{margin-left:17px;position:relative}
+.console .bk-chip.night::before{content:'';position:absolute;left:-9px;top:22%;bottom:22%;
+  width:1px;background:rgba(205,191,164,.18)}
+.console .bk-chip.near{border-color:rgba(200,125,74,.55);color:var(--bone);
+  background:rgba(200,125,74,.07)}
+
+/* компактность пульта на десктопе: меньше низ у лент чипов. Скроллбар оставлен
+   видимым: без него ленты недоступны с мыши; колесо крутит ленту через booking.js */
+.console .bk-chips{padding-bottom:4px}
+
+/* строка слота в шаге «Стол» */
+.bk-slotline{display:flex;align-items:center;justify-content:space-between;gap:12px;
+  flex-wrap:wrap;border:1px solid rgba(200,125,74,.35);border-radius:2px;
+  background:rgba(200,125,74,.06);padding:10px 14px;margin-bottom:12px;
+  font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;color:var(--bone)}
+.cs-link{background:none;border:none;cursor:pointer;padding:0 0 2px;
+  font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;
+  color:rgba(205,191,164,.65);border-bottom:1px solid rgba(205,191,164,.3)}
+.cs-link:hover{color:var(--copper-hot);border-color:var(--copper)}
+
+/* фолбэк-заметка (availability недоступен) */
+.bk-fallback{
+  display:none;margin-top:8px;font-family:var(--mono);font-size:10px;
+  letter-spacing:.08em;color:rgba(233,220,195,.65);
+}
+.bk-fallback.show{display:block}
+
+/* мобильный: пульт липнет к верху и сворачивается в одну строку */
+@media (max-width:900px){
+  .console{position:sticky;top:69px;z-index:30; /* 69px: высота шапки сайта */
+    padding:11px 16px;
+    background:rgba(18,13,8,.94);backdrop-filter:blur(8px);
+    box-shadow:0 10px 24px -14px rgba(0,0,0,.7)}
+  /* главная тап-зона блока в свёрнутом виде: от 44px (WCAG 2.5.5) */
+  .cs-toggle{display:flex;min-height:48px;align-items:center;padding:10px 2px}
+  .cs-collapse{display:none}
+  .console.open .cs-collapse{display:block}
+  .cs-collapse .cs-row{flex-wrap:wrap;gap:12px}
+  .cs-sep{display:none}
+  .cs-tape{flex:1 1 100%}
+  .cs-guests{flex:1 1 auto}
+  .console .slotbar-step button{width:44px;height:44px}
+  .console .bk-chip{padding:11px 13px}
+  .cs-status{width:100%;border-left:none;
+    border-top:1px dashed rgba(205,191,164,.16);padding:12px 0 2px}
+}
+@media (prefers-reduced-motion: reduce){
+  .console{position:static;backdrop-filter:none}
+}
+
+/* ---------- статусы схемы: dimmed (мало мест) ---------- */
+.plan .spot.dimmed .shape{fill:rgba(200,125,74,.05);stroke:rgba(36,26,16,.35);stroke-dasharray:4 3}
+.plan .spot.dimmed text{opacity:.4}
+.plan .spot.dimmed,
+.bk-mcard.dimmed,
+.bkw-card.dimmed{cursor:not-allowed}
+.bk-mcard.dimmed{opacity:.45;filter:grayscale(.45)}
+.bkw-card.dimmed{opacity:.45;filter:grayscale(.45)}
+/* выбранное место: галка поверх формы (различимость без цвета, ТЗ §5) */
+.plan .spot .sel-mark{
+  font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;
+  fill:#241a10;pointer-events:none;
+}
+
+/* ---------- тултип занятого стола / bottom-sheet (ТЗ §3.6) ---------- */
+.bk-tip{
+  position:absolute;z-index:40;max-width:262px;
+  background:var(--ink);border:1px solid rgba(200,125,74,.55);border-radius:3px;
+  box-shadow:0 18px 44px -14px rgba(0,0,0,.85);
+  padding:13px 14px;display:flex;flex-direction:column;gap:9px;
+  animation:bkTipIn .22s ease both;
+}
+@keyframes bkTipIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.bk-tip-txt{font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;
+  line-height:1.6;color:var(--paper)}
+.bk-tip-x{
+  position:absolute;top:6px;right:8px;background:none;border:none;
+  color:rgba(205,191,164,.65);font-size:15px;line-height:1;cursor:pointer;padding:4px;
+}
+.bk-tip-x:hover{color:var(--copper-hot)}
+.bk-tip[hidden]{display:none!important}
+.bk-tip .btn{padding:11px 14px;font-size:12px;width:100%;justify-content:center}
+/* [hidden] слабее .btn{display:inline-flex} из основного CSS: прячем явно */
+.bk-tip .btn[hidden]{display:none!important}
+/* мобильный bottom-sheet */
+@media (max-width:900px){
+  .bk-tip{
+    position:fixed;left:10px;right:10px;bottom:10px;top:auto;max-width:none;
+    z-index:70;padding:16px 16px calc(16px + env(safe-area-inset-bottom));
+    animation:bkTipUp .26s ease both;
+  }
+  @keyframes bkTipUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+}
+/* затемнение под bottom-sheet */
+.bk-tip-veil{position:fixed;inset:0;z-index:65;background:rgba(5,3,2,.5);display:none}
+.bk-tip-veil.show{display:block}
+@media (prefers-reduced-motion: reduce){
+  .bk-tip{animation:none}
+}
+
+/* ---------- плашка «У вас есть заявка» (ТЗ §3.7) ---------- */
+.bk-pending{
+  display:none;margin-top:12px;padding:11px 14px;
+  border:1px solid rgba(200,125,74,.5);border-left:3px solid var(--copper);
+  border-radius:2px;background:rgba(200,125,74,.08);
+  font-family:var(--mono);font-size:11px;letter-spacing:.06em;line-height:1.7;
+  color:var(--paper);
+}
+.bk-pending.show{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.bk-pending b{color:var(--copper-hot);font-weight:400}
+.bk-pending button{
+  margin-left:auto;background:none;border:none;cursor:pointer;
+  font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;
+  color:rgba(205,191,164,.65);border-bottom:1px solid rgba(205,191,164,.3);padding:0 0 2px;
+}
+.bk-pending button:hover{color:var(--copper-hot);border-color:var(--copper)}
+
+@media (prefers-reduced-motion: reduce){
+  .plan .spot .shape{transition:none}
+}
+
+/* фон галки выбранного места на схеме */
+.plan .spot .sel-mark-bg{fill:var(--copper-hot);stroke:var(--wax);stroke-width:1.4}
+
+/* success-блок брони */
+.bk-success{margin-top:16px}
+
+/* мобильный мастер: строка выбранного слота на шаге «Место» */
+.bkw-slotline{display:flex;align-items:center;justify-content:space-between;gap:10px;
+  padding:9px 11px;margin-bottom:12px;border:1px solid rgba(200,125,74,.4);border-radius:2px;
+  background:rgba(200,125,74,.07);font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--bone)}
+
+/* ================= PR3 · адаптив и доступность (ТЗ §8) ================= */
+
+/* контраст мелких подписей ≥ 4.5:1. .mono-note: общий класс страницы,
+   ярче только внутри блока брони и мастера */.booking .mono-note, .bkw .mono-note{color:rgba(239,230,210,.65)}
+
+/* CLS = 0 от подгрузки availability (ТЗ §8): резервируем высоту лент чипов,
+   пока конфиг/слоты не отрендерились (44px чип + паддинги ленты) */
+.console .bk-chips:empty{min-height:44px}
+@media (max-width:900px){
+  .console .bk-chips:empty{min-height:54px}
+}
+
+/* тап-таргеты ≥ 44×44 (ТЗ §8, гейт G5) */
+@media (max-width:900px){
+  .console .bk-chip{min-height:44px;display:inline-flex;align-items:center}
+  .bk-tip .bk-tip-x{
+    width:44px;height:44px;top:0;right:0;padding:0;
+    display:grid;place-items:center;font-size:18px;
+  }
+  .bk-pending button{min-height:44px;display:inline-flex;align-items:center;padding:0}
+}
+
+/* фокус с клавиатуры: медное кольцо на всех интерактивных элементах блока
+   (места на SVG-схеме имеют свой фокус: обводка .shape воском) */
+#bron button:focus-visible,
+#bron a[href]:focus-visible,
+#bron input:focus-visible,
+#bron .bk-head:focus-visible,
+.bkw button:focus-visible,
+.bkw input:focus-visible,
+.bk-tip button:focus-visible{
+  outline:2px solid var(--copper-hot);outline-offset:2px;border-radius:2px;
+}
+
+/* hit-area мест на схеме (ТЗ §8): прозрачная подложка, генерится в booking.js,
+   визуал не меняет; курсор наследует статус места */
+.plan .spot .hit{fill:#000;fill-opacity:0;stroke:none;pointer-events:all;cursor:pointer}
+.plan .spot.busy .hit,.plan .spot.dimmed .hit{cursor:not-allowed}
+
+/* reduced-motion: отключаем все анимации и переходы блока брони и мастера (ТЗ §8) */
+@media (prefers-reduced-motion: reduce){
+  #bron *, #bron *::before, #bron *::after,
+  .bkw *, .bkw *::before, .bkw *::after,
+  .bk-tip, .bk-tip *{animation:none!important;transition:none!important}
+}
